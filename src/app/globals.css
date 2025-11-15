@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Warm Earth Color Palette */
+  --primary-bronze: #8b7355;
+  --light-bronze: #a0826d;
+  --dark-brown: #3d2817;
+  --sandy-orange: #d4a574;
+  --cream-bg: #f8f5f2;
+  --text-brown: #5a4a3a;
+
+  /* Background and foreground for compatibility */
+  --background: var(--cream-bg);
+  --foreground: var(--text-brown);
 }
 
 @theme inline {
@@ -10,17 +19,70 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Custom color palette for the AI Stress Reducer */
+  --color-primary: var(--primary-bronze);
+  --color-secondary: var(--light-bronze);
+  --color-accent: var(--sandy-orange);
+  --color-heading: var(--dark-brown);
+  --color-text: var(--text-brown);
+  --color-cream: var(--cream-bg);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Dark mode adjustments - maintaining warm earth tones but darker */
+    --primary-bronze: #a0826d;
+    --light-bronze: #b8937a;
+    --dark-brown: #f8f5f2;
+    --sandy-orange: #e6b885;
+    --cream-bg: #3d2817;
+    --text-brown: #d4a574;
+
+    --background: var(--cream-bg);
+    --foreground: var(--text-brown);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Golden ratio inspired spacing and sizing */
+:root {
+  --golden-ratio: 1.618;
+  --base-unit: 0.5rem;
+  --spacing-xs: calc(var(--base-unit) * 1); /* 0.5rem */
+  --spacing-sm: calc(var(--base-unit) * var(--golden-ratio)); /* 0.809rem */
+  --spacing-md: calc(var(--base-unit) * var(--golden-ratio) * 2); /* 1.618rem */
+  --spacing-lg: calc(var(--base-unit) * var(--golden-ratio) * 3); /* 2.427rem */
+  --spacing-xl: calc(var(--base-unit) * var(--golden-ratio) * 5); /* 4.045rem */
+}
+
+/* Custom utility classes for the application */
+.btn-primary {
+  @apply bg-primary-bronze hover:bg-light-bronze text-white font-medium py-3 px-6 rounded-2xl transition-all duration-200 hover:shadow-lg active:scale-95;
+}
+
+.btn-secondary {
+  @apply border-2 border-primary-bronze text-primary-bronze hover:bg-primary-bronze hover:text-white font-medium py-3 px-6 rounded-2xl transition-all duration-200 hover:shadow-lg active:scale-95;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-sm border border-light-bronze/20 p-6 md:p-8;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-primary-bronze to-sandy-orange bg-clip-text text-transparent;
+}
+
+.section-padding {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+.container-golden {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
